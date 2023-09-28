@@ -33,15 +33,15 @@ def writeCSV(d,path):
     
     df.to_csv(path)
 
-qkit.config['load_visa'] = True
+qkit.cfg['load_visa'] = True
 qkit.start()
-Rigol = qkit.instruments.create('Rigol','RIGOL_DSG3060',address='Instrument4')
+Rigol = qkit.instruments.create('Rigol','Rigol_DSG3060',address='USB0::0x1AB1::0x0992::DSG3A183600072::0::INSTR')
 Rigol.reset()
-Keith = qkit.instruments.create('Keith','Keithley_2200',address='Instrument2')
+Keith = qkit.instruments.create('Keith','Keithley_2200',address='USB0::0x05E6::0x2200::9210782::0::INSTR')
 Keith.reset()
-ESA = qkit.instruments.create('ESA','Anritsu_MS2830A',address='Instrument1')
+ESA = qkit.instruments.create('ESA','Anritsu_MS2830A',address='USB0::0x0B5B::0x0006::6201585505::0::INSTR')
 ESA.reset()
-PowerMeter = qkit.instruments.create('PowerMeter','Thorlabs_PM100D',address='Instrument3')
+PowerMeter = qkit.instruments.create('PowerMeter','ThorLabs_PM100D',address='USB0::0x1313::0x8078::P0039860::0::INSTR')
 PowerMeter.reset()
 
 freq = 5e9

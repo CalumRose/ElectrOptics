@@ -19,17 +19,17 @@ def writeCSV(d,path):
     
     df.to_csv(path)
     
-#qkit.cfg['load_visa'] = True
-#qkit.start()
+qkit.cfg['load_visa'] = True
+qkit.start()
 ESA = qkit.instruments.create('ESA','Anritsu_MS2830A',address='USB0::0x0B5B::0x0006::6201585505::0::INSTR')
 ESA.do_set_centerfreq(3.8e9)
 ESA.do_set_freqspan(2e8)
 
 rm = visa.ResourceManager()
-inst = rm.open_resource('USBInstrument3')
+inst = rm.open_resource('USBInstrument2')
 
 
-freqrange = np.linspace(3.7e9,3.9e9,101)
+freqrange = np.linspace(3.75e9,3.875e9,201)
 inst.write(':SOUR:LEV 20')
 inst.write(':OUTP:STAT 1')
 
@@ -40,12 +40,12 @@ for val in freqrange:
     inst.write('SOUR:FREQ '+str(val))
     time.sleep(1)
     temp = []
-    for i in range(100):
+    for i in range(40):
         temp.append(max(ESA.get_trace(1)))
-    peaks.append(np.max(temp))
+    peaks.append(np.mean(temp))
 
 
-path = r"C:\Users\2175469R\OneDrive - University of Glasgow\Documents\PhD stuff\ElectroOptic\Data\PhaseModulation\CavityMeasurements\modulated.csv"
+path = r"C:\Users\admin\OneDrive - University of Glasgow\Documents\PhD stuff\ElectroOptic\Data\PhaseModulation\CavityMeasurements\August\IntMod.csv"
 data = pd.DataFrame({'Frequency': freqrange, 'Power': peaks})
 
 writeCSV(data,path)

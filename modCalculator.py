@@ -7,10 +7,10 @@ Created on Fri Sep 30 14:21:12 2022
 
 import numpy as np
 
-laserPower = 15e-3
+laserPower = 18e-6
 
 
-rfPower = 0
+rfPower = 20
 rfLin = 10**(rfPower/10)/1000
 
 Vrms = np.sqrt(rfLin*50)

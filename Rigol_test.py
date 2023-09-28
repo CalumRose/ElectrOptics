@@ -11,7 +11,7 @@ import pyvisa as visa
 rm = visa.ResourceManager()
 print(rm.list_resources())
 
-inst = rm.open_resource('USBInstrument3')
+inst = rm.open_resource('USBInstrument2')
 #inst.timeout  = 10000
 print(inst.query("*IDN?"))
 
